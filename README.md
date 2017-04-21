@@ -611,7 +611,7 @@ variables.
 IO Adapters
 -----------
 
-When a file is uploaded or attached, it an be in one of a few different input
+When a file is uploaded or attached, it can be in one of a few different input
 forms, from Rails' UploadedFile object to a StringIO to a Tempfile or even a
 simple String that is a URL that points to an image.
 
