@@ -1,3 +1,4 @@
+@announce-stdout @announce-stderr
 Feature: Rails integration
 
   Background:
