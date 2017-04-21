@@ -60,7 +60,7 @@ Given "I remove turbolinks" do
 end
 
 Given /^I comment out lines that contain "([^"]+)" in "([^"]+)"$/ do |contains, glob|
-  cd (".") do
+  cd(".") do
     Dir.glob(glob).each do |file|
       transform_file(file) do |content|
         content.gsub(/^(.*?#{contains}.*?)$/) { |line| "# #{line}" }
