@@ -158,8 +158,10 @@ end
 
 Given /^I start the rails application$/ do
   cd(".") do
+    require "rails"
     require "./config/environment"
-    require "capybara/rails"
+    require "capybara"
+    Capybara.app = Rails.application
   end
 end
 
