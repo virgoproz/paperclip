@@ -122,16 +122,16 @@ module Paperclip
     module S3
       def self.extended base
         begin
-          require 'aws-sdk'
+          require 'aws-sdk-s3'
         rescue LoadError => e
-          e.message << " (You may need to install the aws-sdk gem)"
-          raise e
+          begin
+            require "aws-sdk" # Fallback to outdated gem
+          rescue LoadError
+            e.message << " (You may need to install the aws-sdk-s3 gem)"
+            raise e
+          end
         end
-        if Gem::Version.new(Aws::VERSION) >= Gem::Version.new(2) &&
-           Gem::Version.new(Aws::VERSION) <= Gem::Version.new("2.0.33")
-          raise LoadError, "paperclip does not support aws-sdk versions 2.0.0 - 2.0.33.  Please upgrade aws-sdk to a newer version."
-        end
-
+    
         base.instance_eval do
           @s3_options     = @options[:s3_options]     || {}
           @s3_permissions = set_permissions(@options[:s3_permissions])
